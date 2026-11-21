@@ -1,0 +1,185 @@
+@import "reset.css";
+@import "variables.css";
+
+body {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 87.2vw;
+
+  & .controls {
+    background: var(--navy-900);
+    border-radius: 0.9375rem;
+    width: 100%;
+
+    & .identifier {
+      background: var(--purple-600);
+      border-radius: 0.9375rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
+
+      & img {
+        border: 3px solid var(--white);
+        border-radius: 100%;
+        height: 4rem;
+        width: 4rem;
+      }
+
+      & .identifier-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        & p {
+          color: var(--navy-200);
+
+          &.name {
+            color: var(--white);
+            font: var(--name-typography);
+          }
+        }
+      }
+    }
+
+    & .timescale-selectors {
+      display: flex;
+      justify-content: space-around;
+      padding: 1.5rem 0;
+
+      & .timescale-selector {
+        background: transparent;
+        border: 0;
+        color: var(--purple-500);
+        font: var(--button-typography);
+
+        &.active {
+          color: var(--white);
+        }
+      }
+    }
+  }
+
+  & .activity-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+
+    & .activity-card {
+      background: var(--pink-400);
+      border-radius: 0.9375rem;
+      padding-top: 2.375rem;
+			overflow: hidden;
+			position: relative;
+
+			&::before {
+				content: url("../images/icon-work.svg");
+				height: 4.875rem;
+				width: 4.875rem;
+				position: absolute;
+				top: -0.682rem;
+				right: 1.1rem;
+			}
+
+      & .card-content {
+        background: var(--navy-800);
+        border-radius: 0.9375rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 1.5rem;
+				position: relative;
+        width: 100%;
+				z-index: 1;
+
+        & .activity-data {
+          display: flex;
+          justify-content: space-between;
+					align-items: center;
+          margin-bottom: 0.5rem;
+          width: 100%;
+        }
+
+        & .time-spent {
+          font: var(--time-spent-typography);
+        }
+
+        & .previous-time-spent {
+          color: var(--navy-200);
+          font: var(--paragraph-typography);
+        }
+      }
+
+			&.work {
+				background: var(--orange-300);
+				&::before {
+					content: url("../images/icon-work.svg");
+				}
+			}
+			&.play {
+				background: var(--blue-300);
+				&::before {
+					content: url("../images/icon-play.svg");
+					height: 5.625rem;
+					width: 5.625rem;
+				}
+			}
+			&.study {
+				background: var(--pink-400);
+				&::before {
+					content: url("../images/icon-study.svg");
+				}
+			}
+			&.exercise {
+				background: var(--green-400);
+				&::before {
+					content: url("../images/icon-exercise.svg");
+					height: 3.34rem;
+					width: 4.978rem;
+					top: 0;
+				}
+			}
+			&.social {
+				background: var(--purple-700);
+				&::before {
+					content: url("../images/icon-social.svg");
+					height: 6.25rem;
+					width: 4.6rem;
+				}
+			}
+			&.self-care {
+				background: var(--yellow-300);
+				&::before {
+					content: url("../images/icon-self-care.svg");
+					height: 4.125rem;
+					width: 4.5rem;
+				}
+			}
+    }
+  }
+}
+
+p {
+	font: var(--paragraph-typography);
+}
+
+.attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}

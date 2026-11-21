@@ -112,6 +112,14 @@ main {
 
 				@media screen and (min-width: 1000px) {
 					text-align: left;
+
+					&:focus, &:active {
+						border: 1px solid var(--navy-200);
+					}
+	
+					&:hover {
+						cursor: pointer;
+					}
 				}
 
         &.active {
@@ -157,6 +165,11 @@ main {
 				width: clamp(10rem, calc((100% - 4rem) / 3), 16rem);
 			}
 
+			&:active > .card-content, &:focus > .card-content, &:hover > .card-content {
+				background: var(--navy-800);
+				cursor: pointer;
+			}
+
 			&::before {
 				content: url("../images/icon-work.svg");
 				height: 4.875rem;
@@ -167,7 +180,7 @@ main {
 			}
 
       & .card-content {
-        background: var(--navy-800);
+        background: var(--navy-900);
         border-radius: 0.9375rem;
         display: flex;
         justify-content: space-between;

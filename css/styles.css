@@ -13,16 +13,35 @@ body {
 	position: relative;
 }
 
+p {
+	font: var(--paragraph-typography);
+}
+
 main {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   width: 87.2vw;
 
+	@media screen and (min-width: 600px) {
+		max-width: 38.25rem;
+	}
+
+	@media screen and (min-width: 1000px) {
+		flex-direction: row;
+		gap: 2rem;
+		max-width: 70rem;
+	}
+
   & .controls {
     background: var(--navy-900);
     border-radius: 0.9375rem;
     width: 100%;
+
+		@media screen and (min-width: 1000px) {
+			height: 32.5rem;
+			width: clamp(0rem, 22.85%, 16rem);
+		}
 
     & .identifier {
       background: var(--purple-600);
@@ -31,6 +50,11 @@ main {
       align-items: center;
       gap: 1.5rem;
       padding: 2rem;
+
+			@media screen and (min-width: 1000px) {
+				flex-direction: column;
+				align-items: flex-start;
+			}
 
       & img {
         border: 3px solid var(--white);
@@ -50,6 +74,10 @@ main {
           &.name {
             color: var(--white);
             font: var(--name-typography);
+
+						@media screen and (min-width: 1000px) {
+							font: var(--name-typography-large);
+						}
           }
         }
       }
@@ -60,11 +88,31 @@ main {
       justify-content: space-around;
       padding: 1.5rem 0;
 
+			@media screen and (min-width: 600px) {
+				justify-content: center;
+				gap: 0.5rem;
+			}
+
+			@media screen and (min-width: 1000px) {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 1.3125rem;
+				padding: 2rem;
+			}
+
       & .timescale-selector {
         background: transparent;
         border: 0;
         color: var(--purple-500);
         font: var(--button-typography);
+
+				@media screen and (min-width: 600px) {
+					width: 6.8125rem;
+				}
+
+				@media screen and (min-width: 1000px) {
+					text-align: left;
+				}
 
         &.active {
           color: var(--white);
@@ -79,12 +127,35 @@ main {
     gap: 1.5rem;
     width: 100%;
 
+		@media screen and (min-width: 600px) {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		@media screen and (min-width: 1000px) {
+			gap: 2rem;
+			width: clamp(36rem, 57.6vw, 52rem);
+		}
+
     & .activity-card {
       background: var(--pink-400);
       border-radius: 0.9375rem;
+			height: 10rem;
       padding-top: 2.375rem;
 			overflow: hidden;
 			position: relative;
+
+			@media screen and (min-width: 600px) {
+				flex: 0 0 1;
+				height: 13.3125rem;
+				padding-top: 2.8125rem;
+				width: clamp(8rem, calc((100% - 3rem) / 3), 11.75rem); 
+			}
+
+			@media screen and (min-width: 1000px) {
+				height: 15.25rem;
+				width: clamp(10rem, calc((100% - 4rem) / 3), 16rem);
+			}
 
 			&::before {
 				content: url("../images/icon-work.svg");
@@ -102,6 +173,7 @@ main {
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+				height: 100%;
         padding: 1.5rem;
 				position: relative;
         width: 100%;
@@ -113,10 +185,31 @@ main {
 					align-items: center;
           margin-bottom: 0.5rem;
           width: 100%;
+
+					@media screen and (min-width: 600px) {
+						margin-bottom: 1rem;
+					}
+
+					@media screen and (min-width: 1000px) {
+						margin-bottom: 2rem;
+					}
+
+					& .activity-name {
+						font: var(--button-typography);
+					}
         }
 
         & .time-spent {
           font: var(--time-spent-typography);
+
+					@media screen and (min-width: 600px) {
+						font: var(--time-spent-typography-large);
+						margin-bottom: 0.5rem;
+					}
+
+					@media screen and (min-width: 1000px) {
+						width: 100%;
+					}
         }
 
         & .previous-time-spent {
@@ -172,10 +265,6 @@ main {
 			}
     }
   }
-}
-
-p {
-	font: var(--paragraph-typography);
 }
 
 .attribution {

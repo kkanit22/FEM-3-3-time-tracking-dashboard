@@ -10,9 +10,6 @@ let selectedTimescale = "";
 for (let i = 0; i < activityCards.length; i++) {
 	cardMap.set(activityCards[i].classList[1].replaceAll("-", " "), activityCards[i]);
 }
-console.log(cardMap);
-
-
 
 const getPreviousPrefix = () => {
 	if (selectedTimescale.toLowerCase() === "daily") {
@@ -42,15 +39,12 @@ function populateDOM() {
 	});
 }
 
-
-
 fetch('data.json').then((response) => {
 	return response.json();
 }).then((content) => {
 	data = content;
 	populateDOM(content);
 });
-
 
 for (const button of timescaleSelectors) {
 	button.classList.contains("active") ? selectedTimescale = button.textContent : null;

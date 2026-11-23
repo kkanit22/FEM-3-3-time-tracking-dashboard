@@ -40,10 +40,13 @@ function populateDOM() {
 }
 
 fetch('data.json').then((response) => {
+	if (!response.ok) throw new Error('Request failed: ${response.status}');
 	return response.json();
 }).then((content) => {
 	data = content;
 	populateDOM(content);
+}).catch((error) => {
+	console.error(error);
 });
 
 for (const button of timescaleSelectors) {

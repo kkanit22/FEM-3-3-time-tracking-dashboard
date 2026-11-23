@@ -4,22 +4,25 @@ This is a solution to the [Time tracking dashboard challenge on Frontend Mentor]
 
 ## Table of contents
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-  - [AI Collaboration](#ai-collaboration)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+- [Frontend Mentor - Time tracking dashboard solution](#frontend-mentor---time-tracking-dashboard-solution)
+	- [Table of contents](#table-of-contents)
+	- [Overview](#overview)
+		- [The challenge](#the-challenge)
+		- [Screenshot](#screenshot)
+		- [Links](#links)
+	- [My process](#my-process)
+		- [Built with](#built-with)
+		- [What I learned](#what-i-learned)
+		- [Continued development](#continued-development)
+		- [Useful resources](#useful-resources)
+	- [Author](#author)
 
 ## Overview
+This challenge focused mainly on fetching, manipulating, and rendering data on a website. Although it still required responsive layouts and polished styling, it felt simpler than the previous challenge.
+
+The website reads activity data from a JSON file and populates the DOM with it. It also filters the data based on the user’s selected timescale, updating the display whenever that selection changes.
+
+This involved parsing the data, modifying the DOM to render it, and adding event listeners to reparse and rerender the data without fetching it again.
 
 ### The challenge
 
@@ -30,21 +33,22 @@ Users should be able to:
 - Switch between viewing Daily, Weekly, and Monthly stats
 
 ### Screenshot
+- Desktop View ![screenshot](./images/screenshots/screenshot-desktop.png)
+- Desktop View with Work card focused and Self Care card hovered ![screenshot](./images/screenshots/screenshot-desktop-active-hover.png)
+- Tablet View with Weekly timescale 
+  ![screenshot](./images/screenshots/screenshot-tablet.png)
+- Tablet View with Exercise card focused
+  ![screenshot](./images/screenshots/screenshot-tablet-active.png)
+- Mobile View with Monthly timescale 
+  ![screenshot](./images/screenshots/screenshot-mobile.png)
+- Mobile View with Play card focused  
+  ![screenshot](./images/screenshots/screenshot-mobile-active.png)
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/kkanit22/FEM-3-3-time-tracking-dashboard](https://github.com/kkanit22/FEM-3-3-time-tracking-dashboard)
+- Live Site URL: [https://kkanit22.github.io/FEM-3-3-time-tracking-dashboard/](https://kkanit22.github.io/FEM-3-3-time-tracking-dashboard/)
 
 ## My process
 
@@ -53,71 +57,40 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned a bit more about processing data, in particular when looping through both arrays and objects, though in this project I only loop through an object (which I convert to an array to allow for iteration). I originally accomplished this using a for ... of loop. I then looked into ways to filter an object by using Object.entries() method to form an array and using the Array.filter() to manipulate the data set and finally creating a new object using Object.fromEntries as shown below:
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+// We will need the currently selected timescale as a lower case string.
+let selectedTimescaleLC = 'daily'; 
+// We will also need the data object from the fetch after the promise is resolved.
+const data = {}; 
+// We can then loop over the data to get the card and the activity data that matches the currently selected timescale.
+data.forEach(dataSet) => {
+	let activityData = Object.fromEntries(
+		Object.entries(dataSet.timeframes).filter(([key, value]) =>
+			key.includes(selectedTimescaleLC))
+	);
+
+	// Now we can access the filtered data from this dataset:
+	populateDOM(dataSet.title, activityData[selectedTimescaleLC]);
 }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+This seems to work fine, at least in snippets I have tested in the developer tools. Nevertheless, I kept my original populateDOM function which uses an inner loop to return the activityData. I will perhaps try something like this in a future challenge or other project, however.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I hope to get more practice with using array functions such as filter and reduce. In particular I hope to get more proficient at converting between objects and arrays and using variable keys when working with objects, like I did above with `activityData[selectedTimescaleLC]`.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
-
-### AI Collaboration
-
-Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
-
-- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
-- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
-- What worked well? What didn't?
-
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+- [Filter object properties by key in ES6](https://stackoverflow.com/questions/38750705/filter-object-properties-by-key-in-es6) - This Stack Overflow discussion included an example of filtering an object by it keys that is similar to what I included in my example above. The biggest difference is that this uses a `.reduce()` method as the filter only includes the keys.
+- [JavaScript String Matching Methods](https://dev.to/5t3ph/javascript-string-matching-methods-12f7) - With all of the different ways to compare strings, I found this useful as a way of winnowing down my options and determining which is best suited to the task.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Frontend Mentor - [@kkanit22](https://www.frontendmentor.io/profile/kkanit22)

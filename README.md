@@ -58,6 +58,9 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - Mobile-first workflow
+- JavaScript
+- Fetch API
+- DOM Manipulation
 
 ### What I learned
 
